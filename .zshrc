@@ -9,7 +9,7 @@ export EDITOR="nvim"
 
 # OhMyZsh configuration
 ZSH_THEME="powerlevel10k/powerlevel10k"
-ENABLE_CORRECTION="true"
+#ENABLE_CORRECTION="true"
 HIST_STAMPS="dd. mm. yyyy"
 plugins=(git ssh-agent zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
