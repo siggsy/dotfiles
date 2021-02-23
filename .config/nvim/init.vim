@@ -56,5 +56,8 @@ set number
 		  \ coc#refresh()
 	inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
+" Clear search results
+	 noremap <silent> <leader>/ :let @/ = ""<CR>
+
 " P2 Makefile testing
 	map <leader>t :w! \| term export name='%:r' && make && make test<CR>

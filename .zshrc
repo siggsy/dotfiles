@@ -11,7 +11,7 @@ export EDITOR="nvim"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 #ENABLE_CORRECTION="true"
 HIST_STAMPS="dd. mm. yyyy"
-plugins=(git ssh-agent zsh-syntax-highlighting)
+plugins=(git ssh-agent zsh-syntax-highlighting vi-mode)
 source $ZSH/oh-my-zsh.sh
 
 # Aliases
