@@ -17,6 +17,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Aliases
 alias vim="nvim"
+alias switchdp="sudo ddcutil setvcp 0x60 0x0f"
 
 # Dotfile setup
 alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"

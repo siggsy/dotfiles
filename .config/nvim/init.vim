@@ -7,6 +7,10 @@ set nocompatible
 set termguicolors
 set number
 
+augroup templates
+	autocmd BufNewFile *.c 0r ~/.config/nvim/templates/skeleton.c
+augroup end
+
 " Vim plugins
 	call plug#begin('~/.local/share/nvim/plugged')
 	Plug 'joshdick/onedark.vim'
@@ -49,6 +53,7 @@ set number
 	endfunction
 
 	nmap <leader>rn <Plug>(coc-rename)
+	xmap <leader>f  <Plug>(coc-format-selected)
 	nmap <leader>f  <Plug>(coc-format-selected)
 
 	" TAB completion
@@ -80,4 +85,11 @@ set number
 " P2 Makefile testing
 	map <leader>t :w! \| term export name='%:r' && make && make test<CR>
 	map <leader>T :w! \| term vmtest '%:r' '%:p:h'<CR>
-	vnoremap <leader>c "xy :w!<CR> :term gcc -o '%:r' -std=c99 -Wall -pedantic % && echo "<C-r>x" \| ./'%:r'<CR>
+	nnoremap <leader>C :w!<CR>
+				\/\/\/ in:<CR>
+				\<C-v>%hd$viB"iyu
+				\/\/\/ out:<CR>
+				\<C-v>%hd$viB"oyu
+				\:let @/ = ""<CR>
+				\:term gcc -o '%:r' -std=c99 -Wall -pedantic % &&
+				\diff -u <(echo "<c-r>i" \| ./'%:r') <(echo "<c-r>o" \| tr -d '\r') && echo "\033[1;32mok\033[0;38m"<CR><CR>
