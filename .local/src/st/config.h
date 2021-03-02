@@ -6,7 +6,7 @@
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
 static char *font = "Fira Code Medium:pixelsize=14:antialias=true:autohint=true";
-static char *font2[] = { "JoyPixels:pixelsize=10:antialias=true:autohint=true" };
+static char *font2[] = { "MesloLGS NF:pixelsize=14:antialias=true:autohint=true" };
 static int borderpx = 8;
 
 /*
@@ -110,34 +110,40 @@ unsigned int tabspaces = 8;
 float alpha = 1.0;
 
 /* Terminal colors (16 first used in escape sequence) */
-/* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
 
   /* 8 normal colors */
-  [0] = "#5c6370", /* black   */
-  [1] = "#e06c75", /* red     */
-  [2] = "#98c379", /* green   */
-  [3] = "#e5c07b", /* yellow  */
-  [4] = "#61afef", /* blue    */
-  [5] = "#c678dd", /* magenta */
-  [6] = "#56b6c2", /* cyan    */
-  [7] = "#abb2bf", /* white   */
+  [0] = "#2d2d2d", /* black   */
+  [1] = "#f2777a", /* red     */
+  [2] = "#99cc99", /* green   */
+  [3] = "#ffcc66", /* yellow  */
+  [4] = "#6699cc", /* blue    */
+  [5] = "#cc99cc", /* magenta */
+  [6] = "#66cccc", /* cyan    */
+  [7] = "#d3d0c8", /* white   */
 
   /* 8 bright colors */
-  [8]  = "#4b5263", /* black   */
-  [9]  = "#be5046", /* red     */
-  [10] = "#98c379", /* green   */
-  [11] = "#d19a66", /* yellow  */
-  [12] = "#61afef", /* blue    */
-  [13] = "#c678dd", /* magenta */
-  [14] = "#56b6c2", /* cyan    */
-  [15] = "#3e4452", /* white   */
+  [8]  = "#747369", /* black   */
+  [9]  = "#f2777a", /* red     */
+  [10] = "#99cc99", /* green   */
+  [11] = "#ffcc66", /* yellow  */
+  [12] = "#6699cc", /* blue    */
+  [13] = "#cc99cc", /* magenta */
+  [14] = "#66cccc", /* cyan    */
+  [15] = "#f2f0ec", /* white   */
 
   /* special colors */
-  [256] = "#282c34", /* background */
-  [257] = "#abb2bf", /* foreground */
+  [256] = "#2d2d2d", /* background */
+  [257] = "#d3d0c8", /* foreground */
 };
 
+/*
+ * Colors used, when the specific fg == defaultfg. So in reverse mode this
+ * will reverse too. Another logic would only make the simple feature too
+ * complex.
+ */
+static unsigned int defaultitalic = 7;
+static unsigned int defaultunderline = 7;
 /*
  * Default colors (colorname index)
  * foreground, background, cursor
@@ -147,14 +153,6 @@ unsigned int defaultbg = 256;
 unsigned int defaultcs = 257;
 unsigned int defaultrcs = 257;
 
-
-/*
- * Colors used, when the specific fg == defaultfg. So in reverse mode this
- * will reverse too. Another logic would only make the simple feature too
- * complex.
- */
-static unsigned int defaultitalic = 7;
-static unsigned int defaultunderline = 7;
 
 /*
  * Default shape of cursor
@@ -169,8 +167,8 @@ static unsigned int cursorshape = 2;
  * Default columns and rows numbers
  */
 
-static unsigned int cols = 120;
-static unsigned int rows = 42;
+static unsigned int cols = 100;
+static unsigned int rows = 32;
 
 /*
  * Default colour and shape of the mouse cursor
