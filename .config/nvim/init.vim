@@ -1,6 +1,12 @@
 let mapleader=","
+
+set expandtab
+set shiftwidth=4
 set tabstop=4
-set listchars=tab:\|\ 
+
+set listchars=eol:↴,tab:\|\ 
+"map <leader>n :set listchars=tab:\\|\ <CR>
+"map <leader>N :set listchars=eol:↴,tab:\\|\ <CR>
 set list
 
 set nocompatible
@@ -9,11 +15,14 @@ set number
 
 augroup templates
 	autocmd BufNewFile *.c 0r ~/.config/nvim/templates/skeleton.c
+	autocmd BufNewFile *.tex 0r ~/.config/nvim/templates/skeleton.tex
 augroup end
+
 
 " Vim plugins
 	call plug#begin('~/.local/share/nvim/plugged')
 	Plug 'joshdick/onedark.vim'
+	Plug 'morhetz/gruvbox'
 	Plug 'sheerun/vim-polyglot'
 	Plug 'bling/vim-airline'
 	Plug 'voldikss/vim-floaterm'
@@ -22,9 +31,12 @@ augroup end
 	call plug#end()
 
 " Colorscheme
+
+	let g:gruvbox_italic = 1
+	let g:gruvbox_contrast_dark = 'hard'
 	let g:onedark_terminal_italics=1
 	let g:onedark_termcolors=16
-	colorscheme onedark
+	colorscheme gruvbox
 
 " Set to system clipblard
 	set clipboard+=unnamedplus
@@ -58,14 +70,14 @@ augroup end
 
 	" TAB completion
 	function! s:check_back_space() abort
-	  let col = col('.') - 1
-	  return !col || getline('.')[col - 1]  =~ '\s'
+		let col = col('.') - 1
+		return !col || getline('.')[col - 1]  =~ '\s'
 	endfunction
 
 	inoremap <silent><expr> <Tab>
-		  \ pumvisible() ? "\<C-n>" :
-		  \ <SID>check_back_space() ? "\<Tab>" :
-		  \ coc#refresh()
+		\ pumvisible() ? "\<C-n>" :
+		\ <SID>check_back_space() ? "\<Tab>" :
+		\ coc#refresh()
 	inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 	
 	" Code action and quickfix
@@ -91,5 +103,5 @@ augroup end
 				\/\/\/ out:<CR>
 				\<C-v>%hd$viB"oyu
 				\:let @/ = ""<CR>
-				\:term gcc -o '%:r' -std=c99 -Wall -pedantic % &&
-				\diff -u <(echo "<c-r>i" \| ./'%:r') <(echo "<c-r>o" \| tr -d '\r') && echo "\033[1;32mok\033[0;38m"<CR><CR>
+				\:term gcc -o '%:r' -std=c99 -Wall -pedantic -lm % &&
+				\diff -u <(echo "<c-r>i" \| tr -d '\r' \| ./'%:r') <(echo "<c-r>o" \| tr -d '\r') && echo "\033[1;32mok\033[0;38m"<CR><CR>
